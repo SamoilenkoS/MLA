@@ -82,13 +82,65 @@ namespace PresentationLayer
 
         private static void Update()
         {
-            throw new NotImplementedException();
+            Console.Write("Enter id:");
+            int id = Convert.ToInt32(Console.ReadLine());
+            var user = _userRepository.GetById(id);
+            if (user != null)
+            {
+                string enterString = "";
+                Console.Write("Enter first name:");
+                enterString = Console.ReadLine();
+                if (enterString != "")
+                {
+                    user.FirstName = enterString;
+                    enterString = "";
+                }
+
+                Console.Write("Enter last name:");
+
+                enterString = Console.ReadLine();
+                if (enterString != "")
+                {
+                    user.LastName = enterString;
+                    enterString = "";
+                }
+
+                Console.Write("Enter phone :");
+                enterString = Console.ReadLine();
+                if (enterString != "")
+                {
+                    user.Phone = enterString;
+                }
+
+                _userRepository.Update(user);
+
+                Console.Write("User updated!");
+            }
+            else
+            {
+                Console.WriteLine("User not found!");
+            }
+
+            Console.ReadKey();
         }
 
         private static void Remove()
         {
-            throw new NotImplementedException();
+            Console.Write("Enter id:");
+            int id = Convert.ToInt32(Console.ReadLine());
+            var user = _userRepository.GetById(id);
+            if (user != null)
+            {
+                _userRepository.Delete(id);
+            }
+            else
+            {
+                Console.WriteLine("User not found!");
+            }
+
+            Console.ReadKey();
         }
+
 
         private static void Add()
         {
